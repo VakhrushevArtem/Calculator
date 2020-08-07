@@ -2,20 +2,21 @@ package services;
 
 import exception.ValidationException;
 
-import java.util.Arrays;
 
 public class Validator {
     public static boolean isCorrectly(String mathematicalExpression) throws Exception {
         if (mathematicalExpression.matches("[[:alpha:]]") || mathematicalExpression.contains("=")) {
             throw new ValidationException("Выражение содержит недопустимые символы.");
         }
-        if (Arrays.stream(mathematicalExpression.split(" ")).filter("(" ::equals).count() !=
-                Arrays.stream(mathematicalExpression.split(" ")).filter(")" ::equals).count()) {
-            throw new ValidationException("Неверное количество скобок.");
+        if (mathematicalExpression.contains("(") || mathematicalExpression.contains(")")) {
+            throw new ValidationException("Использование скобок недопустимо");
         }
-        mathematicalExpression = mathematicalExpression.replace(" ", "");
-        if(mathematicalExpression.matches("[+\\-*^\\\\]{2,}")) {
+        String temp = mathematicalExpression.replace(" ", "");
+        if (temp.matches("[+\\-*^\\\\]{2,}")) {
             throw new ValidationException("Выражение записано неверно");
+        }
+        if (mathematicalExpression.startsWith("-")) {
+            throw new ValidationException("Использование отрицательных чисел недопустимо");
         }
         return true;
     }
