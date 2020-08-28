@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class ConverterToInfix {
+public class ConverterToPostfix {
     Stack<String> stack = new Stack<>();
     Queue<String> queue = new LinkedList<>();
 
@@ -29,13 +29,22 @@ public class ConverterToInfix {
                 } else if (getPriority(incomingElement) > getPriority(stack.peek())) {
                     stack.push(incomingElement);
                 } else {
-                    while (getPriority(stack.peek()) > getPriority(incomingElement)) {
+                    do {
                         queue.add(stack.pop());
+                        if (stack.isEmpty()) {
+                            break;
+                        }
                     }
+                    while (getPriority(stack.peek()) > getPriority(incomingElement));
+                    stack.push(incomingElement);
                 }
             } else {
                 queue.add(incomingElement);
             }
+        }
+
+        while (!stack.isEmpty()) {
+            queue.add(stack.pop());
         }
         return queue;
     }
