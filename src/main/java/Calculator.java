@@ -15,25 +15,43 @@ public class Calculator {
         return s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/");
     }
 
+    private double sum(double i, double j) {
+        return j + i;
+    }
+
+    private double subtract(double i, double j) {
+        return j - i;
+    }
+
+    private double multiply(double i, double j) {
+        return j * i;
+    }
+
+    private double div(double i, double j) {
+        if (i == 0) {
+            throw new ArithmeticException("Деление на ноль запрещено.");
+        }
+        return j / i;
+    }
+
     private double mathematicalOperation(double i, double j, String operator) {
         switch (operator) {
             case "+":
-                return j + i;
+                return sum(i, j);
             case "-":
-                return j - i;
+                return subtract(i, j);
             case "*":
-                return j * i;
+                return multiply(i, j);
+            case "/":
+                return div(i, j);
             default:
-                if (i == 0) {
-                    throw new ArithmeticException("Деление на ноль запрещено.");
-                }
-                return j / i;
+                throw new IllegalArgumentException("Операции с оператором \"" + operator + "\" нет.");
         }
     }
 
     public double calculateMathematicalExpression(Queue<String> queue) {
         while (!queue.isEmpty()) {
-            if(isOperator(queue.peek())) {
+            if (isOperator(queue.peek())) {
                 stack.push(mathematicalOperation(stack.pop(), stack.pop(), queue.poll()));
             } else {
                 stack.push(Double.parseDouble(queue.poll()));
@@ -45,7 +63,7 @@ public class Calculator {
     public static void main(String[] args) {
         ConsoleWriter.printInitialMessage();
         try {
-           mathematicalExpression = ConsoleReader.getMathematicalExpression();
+            mathematicalExpression = ConsoleReader.getMathematicalExpression();
         } catch (IOException e) {
             ConsoleWriter.printError(e);
         }
