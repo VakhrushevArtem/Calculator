@@ -20,7 +20,10 @@ public class ConverterToPostfix {
         }
     }
 
-    public Queue<String> convertToInfix(String mathematicalExpression) {
+    public Queue<String> convertToPostfix(String mathematicalExpression) {
+        if (mathematicalExpression.isEmpty()) {
+            throw new IllegalArgumentException("Математическое выражение не может быть пустое.");
+        }
         String[] expression = mathematicalExpression.split(" ");
         for (String incomingElement : expression) {
             if (isOperator(incomingElement)) {
