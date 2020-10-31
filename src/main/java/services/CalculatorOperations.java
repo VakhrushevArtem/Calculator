@@ -57,7 +57,7 @@ public class CalculatorOperations {
         return stack.pop();
     }
 
-    public void calculate() {
+    public void run() {
         ConsoleWriter.printInitialMessage();
         try {
             while (!(mathematicalExpression = ConsoleReader.getMathematicalExpression()).equalsIgnoreCase("exit")) {
