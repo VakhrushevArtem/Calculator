@@ -60,29 +60,20 @@ public class CalculatorOperations {
     public void calculate() {
         ConsoleWriter.printInitialMessage();
         try {
-            mathematicalExpression = ConsoleReader.getMathematicalExpression();
+            while (!(mathematicalExpression = ConsoleReader.getMathematicalExpression()).equalsIgnoreCase("exit")) {
+                try {
+                    Validator.isCorrectly(mathematicalExpression);
+                    ConverterToPostfix converterToPostfix = new ConverterToPostfix();
+                    Queue<String> postfixQueue = converterToPostfix.convertToPostfix(mathematicalExpression);
+                    double result = calculateMathematicalExpression(postfixQueue);
+                    ConsoleWriter.printResultOfMathematicalExpression(result);
+                } catch (Exception e) {
+                    ConsoleWriter.printError(e);
+                }
+                ConsoleWriter.printInitialMessage();
+            }
         } catch (IOException e) {
             ConsoleWriter.printError(e);
-        }
-
-        while (!mathematicalExpression.equalsIgnoreCase("exit")) {
-            try {
-                Validator.isCorrectly(mathematicalExpression);
-                ConverterToPostfix converterToPostfix = new ConverterToPostfix();
-                Queue<String> postfixQueue = converterToPostfix.convertToPostfix(mathematicalExpression);
-                double result = calculateMathematicalExpression(postfixQueue);
-                ConsoleWriter.printResultOfMathematicalExpression(result);
-            } catch (Exception e) {
-                ConsoleWriter.printError(e);
-            }
-
-            ConsoleWriter.printInitialMessage();
-
-            try {
-                mathematicalExpression = ConsoleReader.getMathematicalExpression();
-            } catch (IOException e) {
-                ConsoleWriter.printError(e);
-            }
         }
     }
 }
