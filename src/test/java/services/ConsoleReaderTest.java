@@ -1,10 +1,9 @@
 package services;
 
 import org.junit.*;
-import org.junit.jupiter.api.DisplayName;
 import java.io.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 
 public class ConsoleReaderTest {
@@ -18,7 +17,6 @@ public class ConsoleReaderTest {
     }
 
     @Test
-    @DisplayName("Тест метода ConsoleReader.getMathematicalExpression()")
     public void getMathematicalExpressionTest() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {

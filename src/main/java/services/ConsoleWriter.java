@@ -10,6 +10,6 @@ public class ConsoleWriter {
     }
 
     public static void printResultOfMathematicalExpression(double result) {
-        System.out.printf("Результат математического выражения: %.2f \n", result);
+        System.out.printf("Результат математического выражения: %.2f\n", result);
     }
 }
