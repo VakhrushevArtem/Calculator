@@ -18,9 +18,8 @@ public class ConsoleReaderTest {
 
     @Test
     public void getMathematicalExpressionTest() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            assertArrayEquals(INPUT_TEST_TEXT.getBytes(), reader.readLine().getBytes());
+            assertEquals(INPUT_TEST_TEXT, ConsoleReader.getMathematicalExpression());
         } catch (IOException e) {
             e.printStackTrace();
         }

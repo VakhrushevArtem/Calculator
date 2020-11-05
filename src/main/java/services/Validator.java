@@ -4,7 +4,7 @@ import exception.ValidationException;
 
 
 public class Validator {
-    public static boolean isCorrectly(String mathematicalExpression) throws Exception {
+    public static boolean isCorrectly(String mathematicalExpression) throws ValidationException {
         if (mathematicalExpression.matches(".*[a-zA-Z].*") || mathematicalExpression.contains("=")) {
             throw new ValidationException("Выражение содержит недопустимые символы.");
         }
