@@ -22,7 +22,7 @@ public class ValidatorTest {
 
     @Parameterized.Parameters
     public static List<Object[]> getMathematicalExpression() {
-        return Arrays.asList(new Object[][] {
+        return Arrays.asList(new Object[][]{
                 {"2 + + 2"},
                 {"test"},
                 {"-2 + 2"},
@@ -30,15 +30,15 @@ public class ValidatorTest {
         });
     }
 
-    @Test (expected = ValidationException.class)
+    @Test(expected = ValidationException.class)
     @DisplayName("Тест метода isCorrectly() с выбросом исключения.")
-    public void testIsCorrectlyWithValidationException() throws ValidationException{
+    public void testIsCorrectlyWithValidationException() throws ValidationException {
         Validator.isCorrectly(testMathematicalExpression);
     }
 
     @Test
     @DisplayName("Тест метода isCorrectly().")
-    public void testIsCorrectly() throws ValidationException{
+    public void testIsCorrectly() throws ValidationException {
         assertTrue("Неверная запись математического выражения", Validator.isCorrectly(correctlyMathematicalExpression));
     }
 }
