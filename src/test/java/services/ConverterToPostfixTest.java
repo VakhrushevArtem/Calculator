@@ -23,9 +23,9 @@ public class ConverterToPostfixTest {
     @Parameterized.Parameters
     public static Collection initialize() {
         return Arrays.asList(new Object[][] {
-                {"2 + 5 * 4", new LinkedList<>(Arrays.asList(new String[] {"2", "5", "4", "*", "+"}))},
-                {"7 - 3 + 6 * 2", new LinkedList<>(Arrays.asList(new String[] {"7", "3", "-", "6", "2", "*", "+"}))},
-                {"24 - 5 - 10", new LinkedList<>(Arrays.asList(new String[] {"24", "5", "-", "10", "-"}))}
+                {"2 + 5 * 4", new LinkedList<>(Arrays.asList("2", "5", "4", "*", "+"))},
+                {"7 - 3 + 6 * 2", new LinkedList<>(Arrays.asList("7", "3", "-", "6", "2", "*", "+"))},
+                {"24 - 5 - 10", new LinkedList<>(Arrays.asList("24", "5", "-", "10", "-"))}
         });
     }
 

@@ -46,7 +46,7 @@ public class CalculatorOperations {
         }
     }
 
-    private double calculateMathematicalExpression(Queue<String> queue) {
+    protected double calculateMathematicalExpression(Queue<String> queue) {
         while (!queue.isEmpty()) {
             if (isOperator(queue.peek())) {
                 stack.push(mathematicalOperation(stack.pop(), stack.pop(), queue.poll()));
