@@ -15,10 +15,10 @@ import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class CalculatorOperationsTest {
-    Double expectedResult;
-    Queue<String> postfixQueue;
-    Queue<String> postfixQueueWithDivisionByZero = new LinkedList<String>(Arrays.asList("3", "4", "0", "/", "+"));
-    CalculatorOperations calculatorOperations;
+    private Double expectedResult;
+    private Queue<String> postfixQueue;
+    private Queue<String> postfixQueueWithDivisionByZero = new LinkedList<String>(Arrays.asList("3", "4", "0", "/", "+"));
+    private CalculatorOperations calculatorOperations;
 
     public CalculatorOperationsTest(Double expectedResult, Queue<String> postfixQueue) {
         this.expectedResult = expectedResult;
@@ -30,7 +30,8 @@ public class CalculatorOperationsTest {
         return Arrays.asList(new Object[][]{
                 {22.0, new LinkedList<String>(Arrays.asList("2", "5", "4", "*", "+"))},
                 {16.0, new LinkedList<String>(Arrays.asList("7", "3", "-", "6", "2", "*", "+"))},
-                {9.0, new LinkedList<String>(Arrays.asList("24", "5", "-", "10", "-"))}
+                {9.0, new LinkedList<String>(Arrays.asList("24", "5", "-", "10", "-"))},
+                {2.0, new LinkedList<String>(Arrays.asList("4", "2", "/"))}
         });
     }
 

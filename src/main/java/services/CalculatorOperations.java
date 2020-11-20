@@ -1,12 +1,11 @@
 package services;
 
-import java.io.IOException;
 import java.util.Queue;
 import java.util.Stack;
 
 public class CalculatorOperations {
     Stack<Double> stack = new Stack<>();
-    static String mathematicalExpression;
+
 
     private boolean isOperator(String s) {
         return s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/");
@@ -39,14 +38,12 @@ public class CalculatorOperations {
                 return subtract(i, j);
             case "*":
                 return multiply(i, j);
-            case "/":
-                return div(i, j);
             default:
-                throw new IllegalArgumentException("Операции с оператором \"" + operator + "\" нет.");
+                return div(i, j);
         }
     }
 
-    protected double calculateMathematicalExpression(Queue<String> queue) {
+    public double calculateMathematicalExpression(Queue<String> queue) {
         while (!queue.isEmpty()) {
             if (isOperator(queue.peek())) {
                 stack.push(mathematicalOperation(stack.pop(), stack.pop(), queue.poll()));
@@ -55,25 +52,5 @@ public class CalculatorOperations {
             }
         }
         return stack.pop();
-    }
-
-    public void run() {
-        ConsoleWriter.printInitialMessage();
-        try {
-            while (!(mathematicalExpression = ConsoleReader.getMathematicalExpression()).equalsIgnoreCase("exit")) {
-                try {
-                    Validator.isCorrectly(mathematicalExpression);
-                    ConverterToPostfix converterToPostfix = new ConverterToPostfix();
-                    Queue<String> postfixQueue = converterToPostfix.convertToPostfix(mathematicalExpression);
-                    double result = calculateMathematicalExpression(postfixQueue);
-                    ConsoleWriter.printResultOfMathematicalExpression(result);
-                } catch (Exception e) {
-                    ConsoleWriter.printError(e);
-                }
-                ConsoleWriter.printInitialMessage();
-            }
-        } catch (IOException e) {
-            ConsoleWriter.printError(e);
-        }
     }
 }
